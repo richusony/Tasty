@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <!-- bootstrap  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/70218ce737.js" crossorigin="anonymous"></script>
+
+    <style>
+        .signin-container{
+            display: flex;
+            min-width: 360px;
+            min-height: 570px;
+        }
+
+        .image-container{
+            width: 100%;
+        }
+        .image-container img{
+            width: 100%;
+        }
+
+
+        @media (max-width: 993px) {
+    .signin-container {
+        flex-direction: column;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <div class="container signin-container my-4">
+        <div class="container image-container">
+            <img src="./assets/illus deliver.svg" alt="deliver-image">
+        </div>
+        <div class="container-fluid bg-warning d-flex justify-content-center align-items-center rounded p-5">
+            <form method="post" id="signInForm">
+                <h2 class="text-center my-2"><strong>Create</strong> an account.</h2>
+                <div class="form-group my-2"><input class="form-control" type="text" id="name" name="name" placeholder="Full Name"></div>
+                <div class="form-group my-2"><input class="form-control" type="email" id="email" name="email" placeholder="Email"></div>
+                <div class="form-group my-2"><input class="form-control" type="password" name="password"
+                       id="pass" placeholder="Password"></div>
+                <div class="form-group my-2"><input class="form-control" type="password" name="password-repeat"
+                       id="conpass" placeholder="Password (repeat)"></div>
+                <div class="form-group my-2 text-center"><button class="btn btn-light btn-block" type="submit">Sign Up</button></div>
+                <span>You already have an account?</span> <a href="./login.html" class="already">Login here.</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+    <!-- scripts -->
+    <script>
+        const loginForm = document.getElementById('signInForm');
+loginForm.addEventListener('submit', validateSignInForm);
+
+function validateSignInForm(event) {
+    event.preventDefault();
+
+    const email = document.getElementById('email');
+    const password = document.getElementById('pass');
+    const conPass = document.getElementById("conpass");
+    const check = document.getElementById('check');
+    const name = document.getElementById('name');
+
+
+    if(name.value==""){
+        alert("Enter your Name");
+    }
+
+    else if(email.value==""){
+        alert("Enter your Email");
+    }
+
+    else if(password.value==""){
+        alert("Enter your Password");
+    }
+
+    // Validate email
+    else if (!validateEmail(email.value)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
+    // Validate password
+    else if (!validatePassword(password.value)) {
+        alert('Please enter a valid password.');
+        return;
+    }
+
+    else if(password.value != conPass.value){
+        alert("Password doesn't match.");
+    }
+
+    // If all validations pass, submit the form
+    else {
+    alert('Account Created!');
+    localStorage.setItem("email",email.value);
+    localStorage.setItem("password",password.value);
+    localStorage.setItem("name",name.value);
+    window.location.href = './login.html';
+    }
+
+    function validateEmail(email) {
+    // Use a regular expression to check if the email is valid
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+}
+
+function validatePassword(password) {
+    // Customize these rules to match your password requirements
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /\d/.test(password);
+
+    return (
+        password.length >= minLength &&
+        hasUpperCase &&
+        hasLowerCase &&
+        hasNumber
+    );
+}
+}
+        </script>
+    </body>
+
+</html>

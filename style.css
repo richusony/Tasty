@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+.navbar{
+    background-color: rgba(255, 255, 255, 0.728);
+}
+
+.logo{
+    color: rgb(248, 206, 20);
+    font-weight: 800;
+}
+.yellow{
+    color: rgb(248, 206, 20);
+}
+
+.main-sec{
+    display: flex;
+}
+.main-image{
+    width: 100%;
+}
+
+.scroll-hide::-webkit-scrollbar{
+    width: 0;
+}
+
+.foot-bg{
+    background-color: rgb(39, 37, 37);
+}
+
+
+
+@media (max-width: 767px) {
+    .main-sec {
+        display: block;
+    }
+}

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+
+  <!-- bootstrap  -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/70218ce737.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <section class="h-100 h-custom" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="card">
+            <div class="card-body p-4">
+
+              <div class="row d-flex justify-content-center">
+                <div class="col-lg-7">
+                  <h5 class="mb-3"><a href="./index.html" class="text-body"><i
+                        class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
+                  <hr>
+
+                  <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                      <p class="mb-1">Shopping cart</p>
+                      <p class="mb-0">You have <span id="itemCount">0</span> items in your cart</p>
+                    </div>
+                    <div>
+                      <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#" class="text-body">price <i
+                            class="fas fa-angle-down mt-1"></i></a></p>
+                    </div>
+                  </div>
+
+                  <div class="container" id="itemBody">
+                    <!-- cartItems -->
+                  </div>
+
+                </div>
+
+                <div class="col-lg-5" id="cards-details">
+
+                  <div class="card bg-warning text-white rounded-3">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mb-0">Card details</h5>
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" class="img-fluid rounded-3"
+                          style="width: 45px;" alt="Avatar">
+                      </div>
+
+                      <p class="small mb-2">Card type</p>
+                      <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-mastercard fa-2x me-2"></i></a>
+                      <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-visa fa-2x me-2"></i></a>
+                      <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-amex fa-2x me-2"></i></a>
+                      <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
+
+                      <form class="mt-4">
+                        <div class="form-outline form-white mb-4">
+                          <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                            placeholder="Cardholder's Name" />
+                          <label class="form-label" for="typeName">Cardholder's Name</label>
+                        </div>
+
+                        <div class="form-outline form-white mb-4">
+                          <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
+                            placeholder="xxxx xxxx xxxx xxxx" minlength="19" maxlength="19" />
+                          <label class="form-label" for="typeText">Card Number</label>
+                        </div>
+
+                        <div class="row mb-4">
+                          <div class="col-md-6">
+                            <div class="form-outline form-white">
+                              <input type="text" id="typeExp" class="form-control form-control-lg" placeholder="MM/YYYY"
+                                size="7" id="exp" minlength="7" maxlength="7" />
+                              <label class="form-label" for="typeExp">Expiration</label>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-outline form-white">
+                              <input type="password" id="typeText" class="form-control form-control-lg"
+                                placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
+                              <label class="form-label" for="typeText">Cvv</label>
+                            </div>
+                          </div>
+                        </div>
+
+                      </form>
+
+                      <hr class="my-4">
+
+                      <div class="d-flex justify-content-between">
+                        <p class="mb-2">Subtotal</p>
+                        <p class="mb-2">$ <span id="subTotal">0</span></p>
+                      </div>
+
+                      <div class="d-flex justify-content-between">
+                        <p class="mb-2">Shipping</p>
+                        <p class="mb-2">$ <span id="shipping">0</span></p>
+                      </div>
+
+                      <div class="d-flex justify-content-between mb-4">
+                        <p class="mb-2">Total(Incl. taxes)</p>
+                        <p class="mb-2 fs-4"><b>$ <span id="total">0</span>.00</b></p>
+                      </div>
+
+                      <button type="button" class="btn btn-info btn-block bg-light btn-lg">
+                        <div class="d-flex justify-content-between">
+                          <span>Order Now<i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                        </div>
+                      </button>
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+
+  <script>
+    const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+    const pname = document.getElementById('pname');
+    const pdes = document.getElementById('pdes');
+    const pprice = document.getElementById('pprice');
+    const image = document.getElementById('image');
+    const itemCount = document.getElementById('itemCount');
+    const subTotal = document.getElementById('subTotal');
+    const shipping = document.getElementById('shipping');
+    const total = document.getElementById('total');
+
+    let sumPrice = 0;
+    let shipCharge= 20;
+
+    itemCount.innerHTML = cartItems && cartItems.length;
+
+    function itemsList() {
+      const itemBody = document.getElementById('itemBody');
+      const cardDetails = document.getElementById('cards-details');
+
+      if (cartItems && cartItems.length > 0) {
+        cartItems.forEach(item => {
+          const row = document.createElement('div');
+          row.innerHTML = `<div class="card mb-3">
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                          <div class="d-flex flex-row align-items-center">
+                            <div>
+                              <img id="image"
+                                src=${item.imageUrl}
+                                class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                            </div>
+                            <div class="ms-3">
+                              <h5 id="pname">${item.name}</h5>
+                              <p class="small mb-0" id="pdes">${item.description}</p>
+                            </div>
+                          </div>
+                          <div class="d-flex flex-row align-items-center">
+                            <div style="width: 50px;">
+                              <h5 class="fw-normal mb-0">1</h5>
+                            </div>
+                            <div style="width: 80px;">
+                              <h5 class="mb-0" id="pprice">${item.price}</h5>
+                            </div>
+                            <a href="#" style="color: #cecece;" onclick="deleteItem(event)"><i class="fas fa-trash-alt"></i></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>`;
+          itemBody.appendChild(row);
+          sumPrice += item.price;
+        });
+        subTotal.innerHTML = sumPrice;
+        shipping.innerHTML = shipCharge;
+        total.innerHTML = sumPrice + shipCharge;
+      }
+      else {
+        itemBody.innerHTML = `
+        <div class="container-fluid  mt-100 text-center">
+				 <div class="row">
+				 
+					<div class="col-md-12">
+					
+							<div class="card">
+						<div class="card-body cart">
+								<div class="col-sm-12 empty-cart-cls text-center">
+									<img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+									<h3><strong>Your Cart is Empty</strong></h3>
+									<h4>Add something to make me happy :)</h4>
+									<a href="./index.html" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a>
+									
+								
+								</div>
+						</div>
+				</div>
+						
+					
+					</div>
+				 
+				 </div>
+				
+				</div>`;
+
+        cardDetails.style.display = 'none';
+      }
+    }
+    itemsList();
+
+    function deleteItem(event) {
+      const cardElement = event.target.closest(".card");
+      const imageUrl = cardElement.querySelector("#image").src
+      const cartCount = localStorage.getItem('cartCount');
+
+      const index = cartItems && cartItems.findIndex(item => item.imageUrl === imageUrl);
+      console.log(index);
+
+      if (index > -1) {
+        const itemName = cartItems[index].name;
+        cartItems && cartItems.splice(index, 1);
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        cartCount>0?localStorage.setItem("cartCount",cartCount-1):none;
+        alert(`${itemName} is removed from the cart`);
+      }
+    }
+
+  </script>
+</body>
+
+</html>
